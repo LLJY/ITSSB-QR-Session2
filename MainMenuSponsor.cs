@@ -34,5 +34,13 @@ namespace Session2
             BP.Closed += (s, args) => this.Close();
             BP.Show();
         }
+
+        private void Update_package_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var BP = new UpdateBooking(UserID);
+            BP.Closed += (s, args) => this.Close();
+            BP.Show();
+        }
     }
 }

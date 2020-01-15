@@ -38,6 +38,8 @@
             this.update_button = new System.Windows.Forms.Button();
             this.delete_button = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantity_updown)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +47,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Red;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(-2, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(803, 43);
@@ -111,15 +114,17 @@
             this.update_button.TabIndex = 8;
             this.update_button.Text = "Update Quantity";
             this.update_button.UseVisualStyleBackColor = true;
+            this.update_button.Click += new System.EventHandler(this.Update_button_Click);
             // 
             // delete_button
             // 
-            this.delete_button.Location = new System.Drawing.Point(641, 375);
+            this.delete_button.Location = new System.Drawing.Point(643, 375);
             this.delete_button.Name = "delete_button";
             this.delete_button.Size = new System.Drawing.Size(120, 23);
             this.delete_button.TabIndex = 9;
             this.delete_button.Text = "Delete";
             this.delete_button.UseVisualStyleBackColor = true;
+            this.delete_button.Click += new System.EventHandler(this.Delete_button_Click);
             // 
             // label4
             // 
@@ -131,6 +136,16 @@
             this.label4.Size = new System.Drawing.Size(438, 37);
             this.label4.TabIndex = 9;
             this.label4.Text = "Sponsor Manager Main Menu";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 37);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "BACK";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // UpdateBooking
             // 
@@ -149,6 +164,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "UpdateBooking";
             this.Text = "UpdateBooking";
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantity_updown)).EndInit();
             this.ResumeLayout(false);
@@ -168,5 +184,6 @@
         private System.Windows.Forms.Button update_button;
         private System.Windows.Forms.Button delete_button;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }
