@@ -35,7 +35,10 @@ namespace Session2
 
         private void approve_sponsor_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            var AB = new ApproveBooking();
+            AB.Closed += (s, args) => this.Close();
+            AB.Show();
         }
 
         private void view_sponsor_Click_1(object sender, EventArgs e)
