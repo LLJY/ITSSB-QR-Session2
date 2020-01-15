@@ -12,13 +12,29 @@ namespace Session2
 {
     public partial class UpdateBooking : Form
     {
+        List<BookingUpdate> dgvlist = new List<BookingUpdate>();
         public UpdateBooking()
         {
             Initialize();
         }
         public async void Initialize()
         {
+            var asynctask = GetBookingUpdates();
             InitializeComponent();
+            dgvlist = await asynctask;
+            UpdateUI();
+
+        }
+        private void UpdateUI()
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = dgvlist;
+            int total = 0;
+            foreach (var item in dgvlist)
+            {
+                total += item.SubTotalValue;
+            }
+            total_label.Text = total.ToString();
         }
         /// <summary>
         /// Async method to build the list of BookingUpdates
