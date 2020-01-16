@@ -101,6 +101,8 @@ namespace Session2
                         }
                         else
                         {
+                            dgvlist[dataGridView1.SelectedRows[0].Index].QuantityBooked = (int)quantity_updown.Value;
+                            UpdateUI();
                             var booking = (from c in db.Bookings
                                            where c.packageIdFK == item.packageId
                                            where c.userIdFK == UserID
@@ -108,8 +110,6 @@ namespace Session2
                             booking.quantityBooked = (int)quantity_updown.Value;
                             await db.SaveChangesAsync();
                         }
-                        dgvlist[dataGridView1.SelectedRows[0].Index].QuantityBooked = (int)quantity_updown.Value;
-                        UpdateUI();
                     }
                     catch
                     {

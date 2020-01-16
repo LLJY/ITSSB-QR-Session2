@@ -59,6 +59,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +82,12 @@
     </Compile>
     <Compile Include="AddPackages.Designer.cs">
       <DependentUpon>AddPackages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApproveBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApproveBooking.Designer.cs">
+      <DependentUpon>ApproveBooking.cs</DependentUpon>
     </Compile>
     <Compile Include="Benefit.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -132,6 +139,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SponsorshipSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SponsorshipSummary.Designer.cs">
+      <DependentUpon>SponsorshipSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -165,6 +178,9 @@
     <EmbeddedResource Include="AddPackages.resx">
       <DependentUpon>AddPackages.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ApproveBooking.resx">
+      <DependentUpon>ApproveBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BookPackages.resx">
       <DependentUpon>BookPackages.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +202,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SponsorshipSummary.resx">
+      <DependentUpon>SponsorshipSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateBooking.resx">
       <DependentUpon>UpdateBooking.cs</DependentUpon>
     </EmbeddedResource>

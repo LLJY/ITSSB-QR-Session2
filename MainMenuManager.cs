@@ -43,7 +43,10 @@ namespace Session2
 
         private void view_sponsor_Click_1(object sender, EventArgs e)
         {
-
+            this.Hide();
+            var LP = new SponsorshipSummary();
+            LP.Closed += (s, args) => this.Close();
+            LP.Show();
         }
 
         private void back_button_Click(object sender, EventArgs e)
