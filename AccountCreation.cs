@@ -19,18 +19,33 @@ namespace Session2
 
         private async void create_button_Click(object sender, EventArgs e)
         {
-            if(!(string.IsNullOrWhiteSpace(company_box.Text) && string.IsNullOrWhiteSpace(user_box.Text) && string.IsNullOrWhiteSpace(password_box.Text))){
+
+            if (!(string.IsNullOrWhiteSpace(company_box.Text) && string.IsNullOrWhiteSpace(user_box.Text) && string.IsNullOrWhiteSpace(password_box.Text))) {
                 if (user_box.Text.Length > 8)
                 {
-                    if (password_box.Text == password_again_box.Text)
+                    using (var db = new Session2Entities())
                     {
-                        await AddUser();
-                        MessageBox.Show("DONE!");
-                        cancel_button_Click(null, null);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Passwords do not match!");
+                        try
+                        {
+                            var u = (from us in db.Users
+                                     where us.userId == user_box.Text
+                                     select us).First();
+                            MessageBox.Show("Error, cannot have the same userid as anyone else");
+                        }
+                        catch {
+
+
+                            if (password_box.Text == password_again_box.Text)
+                            {
+                                await AddUser();
+                                MessageBox.Show("DONE!");
+                                cancel_button_Click(null, null);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Passwords do not match!");
+                            }
+                        }
                     }
                 }
                 else

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -148,7 +149,52 @@ namespace Session2
 
         private void clear_button_Click(object sender, EventArgs e)
         {
+            tier_combo.SelectedIndex = 0;
+            package_box.Text = "";
+            value_updown.Value = 0;
+            quantity_updown.Value = 0;
+            Online.Checked = false;
+            Flyers.Checked = false;
+            Banner.Checked = false;
+            file_box.Text = "";
+        }
 
+        private void upload_button_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Filter = "csv files (*.csv)|*.csv",
+                FilterIndex = 1,
+                CheckFileExists = true,
+                CheckPathExists = true
+            };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                var list = File.ReadAllLines(ofd.FileName)
+                    .Skip(1)
+                    .Select(a => a.Split(','))
+                    .Select(a => new Package()
+                    {
+                        packageTier = a[0].Trim(),
+                        packageName = a[1].Trim(),
+                        packageValue = int.Parse(a[2]),
+                        packageQuantity = int.Parse(a[3])
+                    }
+                    ).ToList();
+                using (var db = new Session2Entities())
+                {
+                    foreach (var item in list)
+                    {
+                        db.Packages.Add(item);
+                    }
+                    db.SaveChanges();
+                    MessageBox.Show("Done!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No file was selected, Aborting!");
+            }
         }
     }
 }

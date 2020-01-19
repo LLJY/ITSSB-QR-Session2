@@ -58,11 +58,23 @@ namespace Session2
             using (var db = new Session2Entities())
             {
                 var id = dgvlist[dataGridView1.SelectedRows[0].Index].ID;
+                var name = dgvlist[dataGridView1.SelectedRows[0].Index].PackageName;
                 var booking = (from d in db.Bookings
                                where d.bookingId == id
                                select d).First();
-                booking.status = "Approved";
-                await db.SaveChangesAsync();
+                var package = (from p in db.Packages
+                               where p.packageName == name
+                               select p).First();
+                if (package.packageQuantity >= booking.quantityBooked)
+                {
+                    package.packageQuantity -= booking.quantityBooked;
+                    booking.status = "Approved";
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    MessageBox.Show("Insufficient quantity");
+                }
             }
             UpdateUI();
         }

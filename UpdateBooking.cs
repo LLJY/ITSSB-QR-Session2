@@ -89,31 +89,38 @@ namespace Session2
             {
                 using (var db = new Session2Entities())
                 {
-                    try
+                    if (quantity_updown.Value > 0)
                     {
-                        var list = dgvlist[dataGridView1.SelectedRows[0].Index];
-                        var item = (from i in db.Packages
-                                    where i.packageId == list.ID
-                                    select i).First();
-                        if (item.packageQuantity < list.QuantityBooked)
+                        try
                         {
-                            MessageBox.Show("Insufficient Quantity!!!");
+                            var list = dgvlist[dataGridView1.SelectedRows[0].Index];
+                            var item = (from i in db.Packages
+                                        where i.packageId == list.ID
+                                        select i).First();
+                            if (item.packageQuantity < list.QuantityBooked)
+                            {
+                                MessageBox.Show("Insufficient Quantity!!!");
+                            }
+                            else
+                            {
+                                dgvlist[dataGridView1.SelectedRows[0].Index].QuantityBooked = (int)quantity_updown.Value;
+                                UpdateUI();
+                                var booking = (from c in db.Bookings
+                                               where c.packageIdFK == item.packageId
+                                               where c.userIdFK == UserID
+                                               select c).First();
+                                booking.quantityBooked = (int)quantity_updown.Value;
+                                await db.SaveChangesAsync();
+                            }
                         }
-                        else
+                        catch
                         {
-                            dgvlist[dataGridView1.SelectedRows[0].Index].QuantityBooked = (int)quantity_updown.Value;
-                            UpdateUI();
-                            var booking = (from c in db.Bookings
-                                           where c.packageIdFK == item.packageId
-                                           where c.userIdFK == UserID
-                                           select c).First();
-                            booking.quantityBooked = (int)quantity_updown.Value;
-                            await db.SaveChangesAsync();
+
                         }
                     }
-                    catch
+                    else
                     {
-
+                        MessageBox.Show("Please choose a value greater than zero!!");
                     }
                 }
             }

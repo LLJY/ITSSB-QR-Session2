@@ -181,36 +181,43 @@ namespace Session2
             }
             else
             {
-                using(var db = new Session2Entities())
+                if (desired_updown.Value <= int.Parse(dataGridView1.SelectedRows[0].Cells[4].Value.ToString()))
                 {
-                    try
+                    using (var db = new Session2Entities())
                     {
-                        var booking = new Booking()
+                        try
                         {
-                            bookingId = (from b in db.Bookings
-                                         orderby b.bookingId descending
-                                         select b.bookingId).First() + 1,
-                            packageIdFK = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()),
-                            userIdFK = UserID,
-                            quantityBooked = (int)desired_updown.Value,
-                            status = "Pending"
-                        };
-                        db.Bookings.Add(booking);
-                    }
-                    catch
-                    {
-                        var booking = new Booking()
+                            var booking = new Booking()
+                            {
+                                bookingId = (from b in db.Bookings
+                                             orderby b.bookingId descending
+                                             select b.bookingId).First() + 1,
+                                packageIdFK = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()),
+                                userIdFK = UserID,
+                                quantityBooked = (int)desired_updown.Value,
+                                status = "Pending"
+                            };
+                            db.Bookings.Add(booking);
+                        }
+                        catch
                         {
-                            bookingId = 1,
-                            packageIdFK = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()),
-                            userIdFK = UserID,
-                            quantityBooked = (int)desired_updown.Value,
-                            status = "Pending"
-                        };
-                        db.Bookings.Add(booking);
+                            var booking = new Booking()
+                            {
+                                bookingId = 1,
+                                packageIdFK = int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()),
+                                userIdFK = UserID,
+                                quantityBooked = (int)desired_updown.Value,
+                                status = "Pending"
+                            };
+                            db.Bookings.Add(booking);
+                        }
+                        await db.SaveChangesAsync();
+                        MessageBox.Show("DONE!");
                     }
-                    await db.SaveChangesAsync();
-                    MessageBox.Show("DONE!");
+                }
+                else
+                {
+                    MessageBox.Show("Not enough stock!");
                 }
             }
         }
