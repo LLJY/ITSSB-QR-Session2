@@ -37,3 +37,6 @@ C:\Users\lucas\Desktop\projects\ITSSB-QR\ITSSB-QR-Session2\obj\Debug\Session2.cs
 C:\Users\lucas\Desktop\projects\ITSSB-QR\ITSSB-QR-Session2\obj\Debug\Session2.csproj.CopyComplete
 C:\Users\lucas\Desktop\projects\ITSSB-QR\ITSSB-QR-Session2\obj\Debug\Session2.exe
 C:\Users\lucas\Desktop\projects\ITSSB-QR\ITSSB-QR-Session2\obj\Debug\Session2.pdb
+C:\Users\lucas\Desktop\projects\ITSSB-QR\ITSSB-QR-Session2\obj\Debug\Session2.UpdateBooking.resources
+C:\Users\lucas\Desktop\projects\ITSSB-QR\ITSSB-QR-Session2\obj\Debug\Session2.ApproveBooking.resources
+C:\Users\lucas\Desktop\projects\ITSSB-QR\ITSSB-QR-Session2\obj\Debug\Session2.SponsorshipSummary.resources
